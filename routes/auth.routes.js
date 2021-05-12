@@ -74,7 +74,7 @@ router.post('/signup', (req, res, next) => {
 
 // GET Profile Page
 router.get('/userProfile', (req, res) => {
-    res.render('users/userProfile')
+    res.render('users/user-profile', {userInSession: req.session.currentUser})
 })
 
 //////////// L O G I N ///////////
@@ -84,9 +84,9 @@ router.get('/login', (req, res) => {
     res.render('auth/login')
 })
 
-
 // POST GESTIÓN DE IDENTIDAD CON BASE DE DATOS
 router.post('/login', (req, res, next) => {
+    console.log('SESSION:', req.session)
 
     // 1. OBTENER LOS DATOS DEL FORMULARIO
     const {email, password} = req.body
@@ -107,12 +107,18 @@ router.post('/login', (req, res, next) => {
                     })
                     return
                 } else if(bcryptjs.compareSync(password, usuarioEncontrado.passwordHash)){ // Si todo bien, vamos a verificar su password. Si esto sucede un true...
-                    res.render('users/userProfile', {user: usuarioEncontrado})
+                    // res.render('users/userProfile', {user: usuarioEncontrado})
+                    
+                    
+                    // LOGIN EXITOSO - GUARDAR SESIÓN EN COOKIE Y REDIRIGIR AL PERFIL
+                    req.session.currentUser = usuarioEncontrado
+                    res.redirect('/userProfile')
                 } else {
                     res.render('auth/login', {errorMessage: 'Password Incorrecto'} )
                 }
             })
             .catch(e => next(e))    
 })
+
 
 module.exports = router
