@@ -124,11 +124,9 @@ router.post('/login', (req, res, next) => {
 // RUTA PRIVADA
 router.get('/private', (req, res) => {
     const user = req.session.currentUser
-
     if(!user){
         res.redirect("/login")
     }
-
     res.render('private', {userInSession: req.session.currentUser})
 })
 

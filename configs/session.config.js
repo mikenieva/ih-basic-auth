@@ -3,7 +3,6 @@ const session = require('express-session');
 const MongoDbStore = require('connect-mongo')
 
 module.exports = app => {
-
   app.use(
     session({
       secret: process.env.SESS_SECRET,
@@ -12,7 +11,7 @@ module.exports = app => {
       cookie: {
         sameSite: false,
         httpOnly: true,
-        maxAge: 60000 // 60 * 1000 ms === 1 min
+        maxAge: 600000 // 60 * 1000 ms === 1 mi
       },
       store: MongoDbStore.create({
         mongoUrl: process.env.MONGODB_URL
