@@ -122,7 +122,7 @@ router.post('/login', (req, res, next) => {
 
 
 // LOGOUT
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.session.destroy();  
     res.redirect('/');
 });
