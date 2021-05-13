@@ -39,6 +39,8 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 app.use(function(req, res, next){
   res.locals.currentUser = req.session.currentUser;
+  res.locals.saludo = "Hola mudno"
+  console.log(res.locals)
   next();
 });
 

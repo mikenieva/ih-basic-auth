@@ -133,6 +133,7 @@ router.get('/private', (req, res) => {
     const user = req.session.currentUser
     if(!user){
         res.redirect("/login")
+        return
     }
     res.render('private', {userInSession: req.session.currentUser})
 })
