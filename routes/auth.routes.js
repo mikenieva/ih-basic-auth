@@ -121,6 +121,13 @@ router.post('/login', (req, res, next) => {
 })
 
 
+// LOGOUT
+router.post('/logout', (req, res) => {
+    req.session.destroy();  
+    res.redirect('/');
+});
+
+
 // RUTA PRIVADA
 router.get('/private', (req, res) => {
     const user = req.session.currentUser
@@ -129,6 +136,8 @@ router.get('/private', (req, res) => {
     }
     res.render('private', {userInSession: req.session.currentUser})
 })
+
+
 
 
 module.exports = router 
