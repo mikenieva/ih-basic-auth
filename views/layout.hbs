@@ -10,7 +10,6 @@
   </head>
 
   <body>
-    {{saludo}}
     <nav>
       <ul>
         <li id="to-left">
@@ -19,7 +18,7 @@
         {{#if currentUser}}
           <li id="to-right" style="display: flex; padding:0px; align-items: center;">
             <h1 style="margin:0; padding: 0 10px;">Hola {{currentUser.username}}!</h1>
-            <form id="logout-form" action="/logout" method="GET" style="width: 200px; margin:0"></form>
+            <form id="logout-form" action="/logout" method="POST" style="width: 200px; margin:0"></form>
               <button style="margin:0px">Logout</button>
             </form>
           </li>

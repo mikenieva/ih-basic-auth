@@ -41,8 +41,6 @@ const app_name = require('./package.json').name;
 // MIDDLEWARE DE SESIÓN
 app.use(function(req, res, next){
   res.locals.currentUser = req.session.currentUser; // {username: "Ejemplo"}
-  res.locals.saludo = "Hola mudno" // String
-  
   next();
 });
 
